@@ -24,4 +24,4 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$string['pluginname'] = 'Feedback Viewer';
+$string['pluginname'] = 'Feedback viewer';
