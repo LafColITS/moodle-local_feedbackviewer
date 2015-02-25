@@ -28,5 +28,5 @@ $plugin->version   = 2015022300;
 $plugin->requires  = 2013111800;
 $plugin->cron      = 0;
 $plugin->component = 'report_feedbackviewer';
-$plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = 'v0.1.0';
+$plugin->maturity  = MATURITY_STABLE;
+$plugin->release   = 'v1.0.0';
