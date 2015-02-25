@@ -26,7 +26,7 @@ function report_feedbackviewer_get_all_users($coursecontext) {
     $users = array();
     $userlist = get_enrolled_users($coursecontext, '', 0, user_picture::fields('u', null, 0, 0, true));
     $suspended = get_suspended_userids($coursecontext);
-    foreach($userlist as $user) {
+    foreach ($userlist as $user) {
         $users[$user->id] = fullname($user);
     }
     return $users;
@@ -36,7 +36,7 @@ function report_feedbackviewer_build_report($course, $uid) {
     global $DB, $OUTPUT;
     $modinfo = get_fast_modinfo($course);
     $modules = $modinfo->get_instances_of('feedback');
-    foreach($modules as $feedbackid => $cm) {
+    foreach ($modules as $feedbackid => $cm) {
         $feedback = $DB->get_record('feedback', array('id' => $cm->instance));
         $feedbackitems = $DB->get_records('feedback_item', array('feedback' => $feedbackid), 'position');
         $params = array('feedback' => $feedbackid,
@@ -44,7 +44,7 @@ function report_feedbackviewer_build_report($course, $uid) {
                 'anonymous_response' => FEEDBACK_ANONYMOUS_NO);
         $feedbackcompleted = $DB->get_record('feedback_completed', $params);
 
-        if(is_array($feedbackitems)) {
+        if (is_array($feedbackitems)) {
             echo $OUTPUT->heading(format_string($feedback->name));
             if ($feedbackcompleted) {
                 echo $OUTPUT->heading(userdate($feedbackcompleted->timemodified), 3);
@@ -53,7 +53,7 @@ function report_feedbackviewer_build_report($course, $uid) {
             }
             echo $OUTPUT->box_start('feedback_items');
             $itemnr = 0;
-            foreach($feedbackitems as $feedbackitem) {
+            foreach ($feedbackitems as $feedbackitem) {
                 $params = array('completed' => $feedbackcompleted->id, 'item' => $feedbackitem->id);
                 $value = $DB->get_record('feedback_value', $params);
                 if ($feedbackitem->hasvalue == 1 && $feedback->autonumbering) {
