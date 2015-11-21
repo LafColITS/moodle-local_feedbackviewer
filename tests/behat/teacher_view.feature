@@ -95,3 +95,15 @@ Feature: Show all feedback responses from a user
     When I set the field "uid" to "Sadie Student"
     Then I should see "Not completed yet"
     And I log out
+
+  @javascript
+  Scenario: Suspend a student a verify that their feedback is not shown
+    Given the following "course enrolments" exist:
+      | user | course | role | status |
+      | student1 | C1 | student | 1 |
+    When I log in as "teacher1"
+    And I follow "Course 1"
+    And I navigate to "Feedback viewer" node in "Course administration > Reports"
+    Then the "uid" select box should contain "Steve Student"
+    And the "uid" select box should not contain "Sally Student"
+    And I log out

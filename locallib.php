@@ -27,7 +27,9 @@ function report_feedbackviewer_get_all_users($coursecontext) {
     $userlist = get_enrolled_users($coursecontext, '', 0, user_picture::fields('u', null, 0, 0, true));
     $suspended = get_suspended_userids($coursecontext);
     foreach ($userlist as $user) {
-        $users[$user->id] = fullname($user);
+        if (!in_array($user->id, $suspended)) {
+            $users[$user->id] = fullname($user);
+        }
     }
     return $users;
 }
