@@ -32,6 +32,7 @@ Feature: Show all feedback responses from a user
     And I turn editing mode on
     And I add a "Feedback" to section "1" and I fill the form with:
       | Name                | Football |
+      | Description         | None |
       | Record user names   | User's name will be logged and shown with answers |
     And I follow "Football"
     And I follow "Edit questions"
@@ -42,6 +43,7 @@ Feature: Show all feedback responses from a user
     And I follow "Course 1"
     And I add a "Feedback" to section "2" and I fill the form with:
       | Name                | Transportation |
+      | Description         | None |
       | Record user names   | User's name will be logged and shown with answers |
     And I follow "Transportation"
     And I follow "Edit questions"
