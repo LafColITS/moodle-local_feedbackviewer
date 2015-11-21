@@ -1,4 +1,4 @@
-@report @report_feedbackview
+@report @report_feedbackviewer
 Feature: Show all feedback responses from a user
   In order to review a student's feedback in a course
   As a teacher
