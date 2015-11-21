@@ -50,6 +50,7 @@ function report_feedbackviewer_build_report($course, $uid) {
                 echo $OUTPUT->heading(userdate($feedbackcompleted->timemodified), 3);
             } else {
                 echo $OUTPUT->heading(get_string('not_completed_yet', 'feedback'), 3);
+                continue;
             }
             echo $OUTPUT->box_start('feedback_items');
             $itemnr = 0;
