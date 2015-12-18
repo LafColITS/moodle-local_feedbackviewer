@@ -1,6 +1,8 @@
 Moodle Feedback Viewer Report
 ============================
 
+[![Build Status](https://api.travis-ci.org/LafColITS/moodle-report_feedbackviewer.png)](https://api.travis-ci.org/LafColITS/moodle-report_feedbackviewer)
+
 The Feedback Viewer report displays the responses from all Feedback modules in a given course, filtered by user.
 
 Requirements
