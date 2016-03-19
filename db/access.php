@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * report_feedbackviewer capability definitions.
+ * local_feedbackviewer capability definitions.
  *
- * @package   report_feedbackviewer
+ * @package   local_feedbackviewer
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $capabilities = array(
-    'report/feedbackviewer:view' => array(
+    'local/feedbackviewer:view' => array(
         'riskbitmask' => RISK_PERSONAL,
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
@@ -34,5 +34,12 @@ $capabilities = array(
             'manager' => CAP_ALLOW
         ),
         'clonepermissionsfrom' => 'moodle/site:viewreports',
+    ),
+    'local/feedbackviewer:viewmyfeedback' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'student' => CAP_ALLOW
+        )
     )
 );

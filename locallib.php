@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local library functions for the feedbackviewer report.
+ * Local library functions for the feedbackviewer plugin.
  *
- * @package   report_feedbackviewer
+ * @package   local_feedbackviewer
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-function report_feedbackviewer_get_all_users($coursecontext) {
+function local_feedbackviewer_get_all_users($coursecontext) {
     $users = array();
     $userlist = get_enrolled_users($coursecontext, '', 0, user_picture::fields('u', null, 0, 0, true));
     $suspended = get_suspended_userids($coursecontext);
@@ -34,7 +34,7 @@ function report_feedbackviewer_get_all_users($coursecontext) {
     return $users;
 }
 
-function report_feedbackviewer_build_report($course, $uid) {
+function local_feedbackviewer_build_report($course, $uid) {
     global $DB, $OUTPUT;
     $modinfo = get_fast_modinfo($course);
     $modules = $modinfo->get_instances_of('feedback');

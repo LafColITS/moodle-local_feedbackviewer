@@ -26,22 +26,21 @@ require_once(dirname(__FILE__) . '/../../config.php');
 require_once(dirname(__FILE__) . '/locallib.php');
 
 $id     = required_param('id', PARAM_INT);
-$uid    = optional_param('uid', 0, PARAM_INT);
 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
 
 require_login($course);
 
 // Setup page.
-$PAGE->set_url('/local/feedbackviewer/index.php', array('id' => $id));
+$PAGE->set_url('/local/feedbackviewer/my.php', array('id' => $id));
 $PAGE->set_pagelayout('report');
 $returnurl = new moodle_url('/course/view.php', array('id' => $id));
 
 // Check permissions.
 $coursecontext = context_course::instance($course->id);
-require_capability('local/feedbackviewer:view', $coursecontext);
+require_capability('local/feedbackviewer:viewmyfeedback', $coursecontext);
 
-// Get users.
-$users = local_feedbackviewer_get_all_users($coursecontext);
+// Set user.
+$uid = $USER->id;
 
 // Finish setting up page.
 $PAGE->set_title($course->shortname .': '. get_string('feedback'));
@@ -49,14 +48,9 @@ $PAGE->set_heading($course->fullname);
 
 // Display to the user.
 echo $OUTPUT->header();
-$select = new single_select($PAGE->url, 'uid', $users, $uid);
-$select->label = get_string('user');
-echo html_writer::tag('div', $OUTPUT->render($select));
 
-// Display report if a user is selected.
-if (!empty($uid)) {
-    local_feedbackviewer_build_report($course, $uid);
-}
+// Display report if a user selected.
+local_feedbackviewer_build_report($course, $uid);
 
 // Finish.
 echo $OUTPUT->footer();

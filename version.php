@@ -15,18 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * report_feedbackviewer version information.
+ * local_feedbackviewer version information.
  *
- * @package   report_feedbackviewer
+ * @package   local_feedbackviewer
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2015022300;
+$plugin->version   = 2015121800;
 $plugin->requires  = 2013111800;
 $plugin->cron      = 0;
-$plugin->component = 'report_feedbackviewer';
+$plugin->component = 'local_feedbackviewer';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = 'v1.0.0';

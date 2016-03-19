@@ -1,8 +1,8 @@
 @local @local_feedbackviewer
-Feature: Show all feedback responses from a user
-  In order to review a student's feedback in a course
-  As a teacher
-  I need to see all the student's responses
+Feature: Show my feedback responses in a course
+  In order to review my feedback responses in a course
+  As a student
+  I need to see all my feedback
 
   Background:
     Given the following "courses" exist:
@@ -12,14 +12,10 @@ Feature: Show all feedback responses from a user
       | username | firstname | lastname | email |
       | teacher1 | Terry | Teacher | teacher1@example.com |
       | student1 | Sally | Student | student1@example.com |
-      | student2 | Steve | Student | student2@example.com |
-      | student3 | Sadie | Student | student3@example.com |
     And the following "course enrolments" exist:
       | user | course | role |
       | teacher1 | C1 | editingteacher |
       | student1 | C1 | student |
-      | student2 | C1 | student |
-      | student3 | C1 | student |
     And I log in as "admin"
     And I navigate to "Manage activities" node in "Site administration > Plugins > Activity modules"
     And I click on "Show" "link" in the "Feedback" "table_row"
@@ -55,6 +51,9 @@ Feature: Show all feedback responses from a user
 
     And I log in as "student1"
     And I follow "Course 1"
+    And I navigate to "My feedback" node in "Course administration > Feedback viewer"
+    And I should see "Not completed yet"
+    And I follow "Course 1" 
     And I follow "Football"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
@@ -66,44 +65,9 @@ Feature: Show all feedback responses from a user
     And I press "Submit your answers"
     And I log out
 
-    And I log in as "student2"
+    And I log in as "student1"
     And I follow "Course 1"
-    And I follow "Football"
-    And I follow "Answer the questions"
-    And I set the field "Favorite football team?" to "Ohio State"
-    And I press "Submit your answers"
-    And I press "Continue"
-    And I follow "Transportation"
-    And I follow "Answer the questions"
-    And I set the field "Favorite transport mode?" to "Bus"
-    And I press "Submit your answers"
-    And I log out
-
-    And I log in as "teacher1"
-    And I follow "Course 1"
-    And I navigate to "All feedback" node in "Course administration > Feedback viewer"
-    And I set the field "uid" to "Sally Student"
+    And I navigate to "My feedback" node in "Course administration > Feedback viewer"
     Then I should see "Michigan"
     And I should see "Rail"
-    And I should not see "Ohio State"
-    And I should not see "Bus"
-    When I set the field "uid" to "Steve Student"
-    Then I should see "Ohio State"
-    And I should see "Bus"
-    And I should not see "Michigan"
-    And I should not see "Rail"
-    When I set the field "uid" to "Sadie Student"
-    Then I should see "Not completed yet"
-    And I log out
-
-  @javascript
-  Scenario: Suspend a student a verify that their feedback is not shown
-    Given the following "course enrolments" exist:
-      | user | course | role | status |
-      | student1 | C1 | student | 1 |
-    When I log in as "teacher1"
-    And I follow "Course 1"
-    And I navigate to "All feedback" node in "Course administration > Feedback viewer"
-    Then the "uid" select box should contain "Steve Student"
-    And the "uid" select box should not contain "Sally Student"
     And I log out

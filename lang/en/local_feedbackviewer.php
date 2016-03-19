@@ -15,13 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'report_feedbackviewer', language 'en'
+ * Strings for component 'local_feedbackviewer', language 'en'
  *
- * @package   report_feedbackviewer
+ * @package   local_feedbackviewer
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
+$string['all'] = 'All feedback';
 $string['pluginname'] = 'Feedback viewer';
+$string['my'] = 'My feedback';

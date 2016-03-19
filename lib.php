@@ -15,17 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Library functions for the feedback viewer report.
+ * Library functions for the feedback viewer.
  *
- * @package   report_feedbackviewer
+ * @package   local_feedbackviewer
  * @copyright 2015 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-function report_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
-    if (has_capability('report/feedbackviewer:view', $context)) {
-        $url = new moodle_url('/report/feedbackviewer/index.php', array('id' => $course->id));
-        $navigation->add(get_string('pluginname', 'report_feedbackviewer'), $url,
+function local_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
+    global $PAGE;
+
+    if (!has_capability('local/feedbackviewer:view', $context) &&
+        !has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
+        return true;
+    }
+
+    $feedback = $navigation->add(get_string('pluginname', 'local_feedbackviewer'));
+
+    if (has_capability('local/feedbackviewer:view', $context)) {
+        $url = new moodle_url('/local/feedbackviewer/index.php', array('id' => $course->id));
+        $feedback->add(get_string('all', 'local_feedbackviewer'), $url,
+                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
+    }
+    if (has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
+        $url = new moodle_url('/local/feedbackviewer/my.php', array('id' => $course->id));
+        $feedback->add(get_string('my', 'local_feedbackviewer'), $url,
                 navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
 }
