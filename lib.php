@@ -23,7 +23,6 @@
  */
 
 function local_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
-    global $PAGE;
 
     if (!has_capability('local/feedbackviewer:view', $context) &&
         !has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
