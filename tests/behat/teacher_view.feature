@@ -14,12 +14,14 @@ Feature: Show all feedback responses from a user
       | student1 | Sally | Student | student1@example.com |
       | student2 | Steve | Student | student2@example.com |
       | student3 | Sadie | Student | student3@example.com |
+      | student4 | Shawn | Student | student4@example.com |
     And the following "course enrolments" exist:
-      | user | course | role |
-      | teacher1 | C1 | editingteacher |
-      | student1 | C1 | student |
-      | student2 | C1 | student |
-      | student3 | C1 | student |
+      | user | course | role           | status |
+      | teacher1 | C1 | editingteacher | 0      |
+      | student1 | C1 | student        | 0      |
+      | student2 | C1 | student        | 0      |
+      | student3 | C1 | student        | 0      |
+      | student4 | C1 | student        | 1      |
     And I log in as "admin"
     And I navigate to "Manage activities" node in "Site administration > Plugins > Activity modules"
     And I click on "Show" "link" in the "Feedback" "table_row"
@@ -97,13 +99,9 @@ Feature: Show all feedback responses from a user
     And I log out
 
   @javascript
-  Scenario: Suspend a student a verify that their feedback is not shown
-    Given the following "course enrolments" exist:
-      | user | course | role | status |
-      | student1 | C1 | student | 1 |
+  Scenario: Verify that a suspended student's feedback is not shown
     When I log in as "teacher1"
     And I follow "Course 1"
     And I navigate to "All feedback" node in "Course administration > Feedback viewer"
     Then the "uid" select box should contain "Steve Student"
-    And the "uid" select box should not contain "Sally Student"
-    And I log out
+    And the "uid" select box should not contain "Shawn Student"
