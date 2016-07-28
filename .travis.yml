@@ -14,9 +14,7 @@ env:
  global:
   - IGNORE_NAMES=package.json,gulpfile.js
  matrix:
-  - DB=pgsql MOODLE_BRANCH=MOODLE_30_STABLE
   - DB=pgsql MOODLE_BRANCH=MOODLE_31_STABLE
-  - DB=mysqli MOODLE_BRANCH=MOODLE_30_STABLE
   - DB=mysqli MOODLE_BRANCH=MOODLE_31_STABLE
 
 before_install:

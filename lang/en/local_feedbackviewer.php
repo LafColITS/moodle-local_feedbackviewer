@@ -25,5 +25,6 @@
 defined('MOODLE_INTERNAL') || die;
 
 $string['all'] = 'All feedback';
+$string['not_completed_yet'] = 'Not completed yet';
 $string['pluginname'] = 'Feedback viewer';
 $string['my'] = 'My feedback';

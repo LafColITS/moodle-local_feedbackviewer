@@ -36,46 +36,26 @@ function local_feedbackviewer_get_all_users($coursecontext) {
 
 function local_feedbackviewer_build_report($course, $uid) {
     global $DB, $OUTPUT;
-    $modinfo = get_fast_modinfo($course);
-    $modules = $modinfo->get_instances_of('feedback');
-    foreach ($modules as $feedbackid => $cm) {
-        $feedback = $DB->get_record('feedback', array('id' => $cm->instance));
-        $feedbackitems = $DB->get_records('feedback_item', array('feedback' => $feedbackid), 'position');
-        $params = array('feedback' => $feedbackid,
+
+    $feedbacks = get_all_instances_in_course('feedback', $course);
+    foreach ($feedbacks as $feedback) {
+        $params = array('feedback' => $feedback->id,
                 'userid' => $uid,
                 'anonymous_response' => FEEDBACK_ANONYMOUS_NO);
         $feedbackcompleted = $DB->get_record('feedback_completed', $params);
 
-        if (is_array($feedbackitems)) {
-            echo $OUTPUT->heading(format_string($feedback->name));
-            if ($feedbackcompleted) {
-                echo $OUTPUT->heading(userdate($feedbackcompleted->timemodified), 3);
-            } else {
-                echo $OUTPUT->heading(get_string('not_completed_yet', 'feedback'), 3);
-                continue;
-            }
-            echo $OUTPUT->box_start('feedback_items');
-            $itemnr = 0;
-            foreach ($feedbackitems as $feedbackitem) {
-                $params = array('completed' => $feedbackcompleted->id, 'item' => $feedbackitem->id);
-                $value = $DB->get_record('feedback_value', $params);
-                if ($feedbackitem->hasvalue == 1 && $feedback->autonumbering) {
-                    $itemnr++;
-                    echo $OUTPUT->box_start('feedback_item_number_left');
-                    echo $itemnr;
-                    echo $OUTPUT->box_end();
-                }
-                if ($feedbackitem->typ != 'pagebreak') {
-                    echo $OUTPUT->box_start('box generalbox boxalign_left');
-                    if (isset($value->value)) {
-                        feedback_print_item_show_value($feedbackitem, $value->value);
-                    } else {
-                        feedback_print_item_show_value($feedbackitem, false);
-                    }
-                    echo $OUTPUT->box_end();
-                }
-            }
-            echo $OUTPUT->box_end();
+        echo $OUTPUT->heading(format_string($feedback->name));
+        if ($feedbackcompleted) {
+            echo $OUTPUT->heading(userdate($feedbackcompleted->timemodified), 3);
+        } else {
+            echo $OUTPUT->heading(get_string('not_completed_yet', 'local_feedbackviewer'), 3);
+            continue;
         }
+
+        $feedbackstructure = new mod_feedback_completion($feedback, get_coursemodule_from_id(null, $feedback->coursemodule),
+            0, true, $feedbackcompleted->id, $uid);
+        $form = new mod_feedback_complete_form(mod_feedback_complete_form::MODE_VIEW_RESPONSE,
+            $feedbackstructure, 'feedback_viewresponse_form');
+        $form->display();
     }
 }

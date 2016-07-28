@@ -16,44 +16,32 @@ Feature: Show my feedback responses in a course
       | user | course | role |
       | teacher1 | C1 | editingteacher |
       | student1 | C1 | student |
-    And I log in as "admin"
-    And I navigate to "Manage activities" node in "Site administration > Plugins > Activity modules"
-    And I click on "Show" "link" in the "Feedback" "table_row"
+    And the following "activities" exist:
+      | activity | name           | course | idnumber  | anonymous |
+      | feedback | Football       | C1     | feedback0 | 2         |
+      | feedback | Transportation | C1     | feedback1 | 2         |
+    When I log in as "teacher1"
+    And I follow "Course 1"
+    And I turn editing mode on
+    And I follow "Football"
+    And I follow "Edit questions"
+    And I add a "Longer text answer" question to the feedback with:
+      | Question | Favorite football team? |
+      | Label    | footballteam            |
+    And I follow "Transportation"
+    And I follow "Edit questions"
+    And I add a "Longer text answer" question to the feedback with:
+      | Question | Favorite transport mode? |
+      | Label    | transportmode            |
     And I log out
 
   @javascript
   Scenario: View a student's feedback
-    When I log in as "teacher1"
-    And I follow "Course 1"
-    And I turn editing mode on
-    And I add a "Feedback" to section "1" and I fill the form with:
-      | Name                | Football |
-      | Description         | None |
-      | Record user names   | User's name will be logged and shown with answers |
-    And I follow "Football"
-    And I follow "Edit questions"
-    And I set the field "id_typ" to "Longer text answer"
-    And I set the following fields to these values:
-      | Question | Favorite football team? |
-    And I press "Save question"
-    And I follow "Course 1"
-    And I add a "Feedback" to section "2" and I fill the form with:
-      | Name                | Transportation |
-      | Description         | None |
-      | Record user names   | User's name will be logged and shown with answers |
-    And I follow "Transportation"
-    And I follow "Edit questions"
-    And I set the field "id_typ" to "Longer text answer"
-    And I set the following fields to these values:
-      | Question | Favorite transport mode? |
-    And I press "Save question"
-    And I log out
-
     And I log in as "student1"
     And I follow "Course 1"
     And I navigate to "My feedback" node in "Course administration > Feedback viewer"
     And I should see "Not completed yet"
-    And I follow "Course 1" 
+    And I follow "Course 1"
     And I follow "Football"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
@@ -64,7 +52,6 @@ Feature: Show my feedback responses in a course
     And I set the field "Favorite transport mode?" to "Rail"
     And I press "Submit your answers"
     And I log out
-
     And I log in as "student1"
     And I follow "Course 1"
     And I navigate to "My feedback" node in "Course administration > Feedback viewer"
