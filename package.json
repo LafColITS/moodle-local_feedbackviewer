@@ -1,7 +1,7 @@
 {
-  "name": "report_feedbackviewer",
-  "version": "1.0.0",
-  "description": "Moodle Feedback Viewer report",
+  "name": "local_feedbackviewer",
+  "version": "1.2.1",
+  "description": "Feedback Viewer local plugin",
   "uri": "http://www.lafayette.edu",
   "author": "Lafayette College",
   "license": "GPL-3.0+",
