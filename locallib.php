@@ -54,8 +54,7 @@ function local_feedbackviewer_build_report($course, $uid) {
 
         $feedbackstructure = new mod_feedback_completion($feedback, get_coursemodule_from_id(null, $feedback->coursemodule),
             0, true, $feedbackcompleted->id, $uid);
-        $form = new mod_feedback_complete_form(mod_feedback_complete_form::MODE_VIEW_RESPONSE,
-            $feedbackstructure, 'feedback_viewresponse_form');
-        $form->display();
+        $responsestable = new local_feedbackviewer_display($feedbackstructure, $uid);
+        $responsestable->display();
     }
 }
