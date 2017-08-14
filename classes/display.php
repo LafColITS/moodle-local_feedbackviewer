@@ -34,8 +34,8 @@ class local_feedbackviewer_display extends mod_feedback_responses_table {
     }
 
     // Overridden to narrow on the given user.
-    protected function init() {
-        parent::init();
+    protected function init($group=0) {
+        parent::init($group);
         $this->sql->where .= 'AND u.id = :userid';
         $this->sql->params['userid'] = $this->userid;
     }
