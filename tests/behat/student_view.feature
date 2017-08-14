@@ -21,15 +21,16 @@ Feature: Show my feedback responses in a course
       | feedback | Football       | C1     | feedback0 | 2         |
       | feedback | Transportation | C1     | feedback1 | 2         |
     When I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I turn editing mode on
     And I follow "Football"
-    And I follow "Edit questions"
+    And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite football team? |
       | Label    | footballteam            |
+    And I am on "Course 1" course homepage
     And I follow "Transportation"
-    And I follow "Edit questions"
+    And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite transport mode? |
       | Label    | transportmode            |
@@ -38,7 +39,7 @@ Feature: Show my feedback responses in a course
   @javascript
   Scenario: View a student's feedback
     And I log in as "student1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I navigate to "My feedback" node in "Course administration > Feedback viewer"
     And I should see "Not completed yet"
     And I follow "Course 1"
@@ -53,7 +54,7 @@ Feature: Show my feedback responses in a course
     And I press "Submit your answers"
     And I log out
     And I log in as "student1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I navigate to "My feedback" node in "Course administration > Feedback viewer"
     Then I should see "Michigan"
     And I should see "Rail"

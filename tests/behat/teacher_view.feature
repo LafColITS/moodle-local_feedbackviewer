@@ -27,15 +27,16 @@ Feature: Show all feedback responses from a user
       | feedback | Football       | C1     | feedback0 | 2         |
       | feedback | Transportation | C1     | feedback1 | 2         |
     When I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I turn editing mode on
     And I follow "Football"
-    And I follow "Edit questions"
+    And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite football team? |
       | Label    | footballteam            |
+    And I am on "Course 1" course homepage
     And I follow "Transportation"
-    And I follow "Edit questions"
+    And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite transport mode? |
       | Label    | transportmode            |
@@ -44,7 +45,7 @@ Feature: Show all feedback responses from a user
   @javascript
   Scenario: View a student's feedback
     When I log in as "student1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I follow "Football"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
@@ -56,7 +57,7 @@ Feature: Show all feedback responses from a user
     And I press "Submit your answers"
     And I log out
     And I log in as "student2"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I follow "Football"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Ohio State"
@@ -68,7 +69,7 @@ Feature: Show all feedback responses from a user
     And I press "Submit your answers"
     And I log out
     And I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I navigate to "All feedback" node in "Course administration > Feedback viewer"
     And I set the field "uid" to "Sally Student"
     Then I should see "Michigan"
@@ -87,7 +88,7 @@ Feature: Show all feedback responses from a user
   @javascript
   Scenario: Verify that a suspended student's feedback is not shown
     When I log in as "teacher1"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I navigate to "All feedback" node in "Course administration > Feedback viewer"
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Shawn Student"
