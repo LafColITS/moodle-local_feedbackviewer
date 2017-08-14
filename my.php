@@ -23,7 +23,6 @@
  */
 
 require_once(dirname(__FILE__) . '/../../config.php');
-require_once(dirname(__FILE__) . '/locallib.php');
 
 $id     = required_param('id', PARAM_INT);
 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
@@ -50,7 +49,7 @@ $PAGE->set_heading($course->fullname);
 echo $OUTPUT->header();
 
 // Display report if a user selected.
-local_feedbackviewer_build_report($course, $uid);
+local_feedbackviewer\report::build_report($course, $uid);
 
 // Finish.
 echo $OUTPUT->footer();

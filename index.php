@@ -23,7 +23,6 @@
  */
 
 require_once(dirname(__FILE__) . '/../../config.php');
-require_once(dirname(__FILE__) . '/locallib.php');
 
 $id     = required_param('id', PARAM_INT);
 $uid    = optional_param('uid', 0, PARAM_INT);
@@ -41,7 +40,7 @@ $coursecontext = context_course::instance($course->id);
 require_capability('local/feedbackviewer:view', $coursecontext);
 
 // Get users.
-$users = local_feedbackviewer_get_all_users($coursecontext);
+$users = local_feedbackviewer\report::get_all_users($coursecontext);
 
 // Finish setting up page.
 $PAGE->set_title($course->shortname .': '. get_string('feedback'));
@@ -55,7 +54,7 @@ echo html_writer::tag('div', $OUTPUT->render($select));
 
 // Display report if a user is selected.
 if (!empty($uid)) {
-    local_feedbackviewer_build_report($course, $uid);
+    local_feedbackviewer\report::build_report($course, $uid);
 }
 
 // Finish.

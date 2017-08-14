@@ -23,9 +23,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace local_feedbackviewer;
+
 defined('MOODLE_INTERNAL') || die();
 
-class local_feedbackviewer_display extends mod_feedback_responses_table {
+class display extends \mod_feedback_responses_table {
     protected $userid;
 
     public function __construct($feedbackstructure, $userid) {
@@ -50,14 +52,14 @@ class local_feedbackviewer_display extends mod_feedback_responses_table {
             $formattedrow = $this->format_row($row);
         }
 
-        echo html_writer::start_tag('div', array('class' => 'mform'));
+        echo \html_writer::start_tag('div', array('class' => 'mform'));
         foreach ($headers as $id => $header) {
-            echo html_writer::start_tag('div', array('class' => 'fitem'));
-            echo html_writer::tag('div', $header, array('class' => 'fitemtitle'));
-            echo html_writer::tag('div', format_text($formattedrow["val$id"]), array('class' => 'felement fstatic'));
-            echo html_writer::end_tag('div');
+            echo \html_writer::start_tag('div', array('class' => 'fitem'));
+            echo \html_writer::tag('div', $header, array('class' => 'fitemtitle'));
+            echo \html_writer::tag('div', format_text($formattedrow["val$id"]), array('class' => 'felement fstatic'));
+            echo \html_writer::end_tag('div');
         }
-        echo html_writer::end_tag('div');
+        echo \html_writer::end_tag('div');
     }
 
     public function display() {
