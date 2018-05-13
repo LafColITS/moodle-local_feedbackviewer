@@ -27,4 +27,5 @@ defined('MOODLE_INTERNAL') || die;
 $string['all'] = 'All feedback';
 $string['not_completed_yet'] = 'Not completed yet';
 $string['pluginname'] = 'Feedback viewer';
+$string['privacy:metadata'] = 'The Feedback viewer plugin does not store any personal data.';
 $string['my'] = 'My feedback';

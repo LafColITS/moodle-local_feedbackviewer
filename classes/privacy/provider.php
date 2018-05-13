@@ -15,17 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local_feedbackviewer version information.
+ * Privacy implementation for local_feedbackviewer.
  *
  * @package   local_feedbackviewer
- * @copyright 2015 Lafayette College ITS
+ * @copyright 2018 Lafayette College ITS
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+namespace local_feedbackviewer\privacy;
 
-$plugin->version   = 2017081400;
-$plugin->requires  = 2017111300;
-$plugin->component = 'local_feedbackviewer';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.2.0';
+defined('MOODLE_INTERNAL') || die();
+
+class provider implements
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
