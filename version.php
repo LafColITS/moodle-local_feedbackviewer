@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2017081400;
+$plugin->version   = 2017081401;
 $plugin->requires  = 2017051500;
 $plugin->component = 'local_feedbackviewer';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.2.0';
+$plugin->release   = 'v3.3.0';
