@@ -40,7 +40,7 @@ Feature: Show my feedback responses in a course
   Scenario: View a student's feedback
     And I log in as "student1"
     And I am on "Course 1" course homepage
-    And I navigate to "My feedback" node in "Course administration > Feedback viewer"
+    And I navigate to "Feedback viewer > My feedback" in current page administration
     And I should see "Not completed yet"
     And I follow "Course 1"
     And I follow "Football"
@@ -55,7 +55,7 @@ Feature: Show my feedback responses in a course
     And I log out
     And I log in as "student1"
     And I am on "Course 1" course homepage
-    And I navigate to "My feedback" node in "Course administration > Feedback viewer"
+    And I navigate to "Feedback viewer > My feedback" in current page administration
     Then I should see "Michigan"
     And I should see "Rail"
     And I log out

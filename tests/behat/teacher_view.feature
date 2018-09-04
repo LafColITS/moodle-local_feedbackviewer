@@ -70,7 +70,7 @@ Feature: Show all feedback responses from a user
     And I log out
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "All feedback" node in "Course administration > Feedback viewer"
+    And I navigate to "Feedback viewer > All feedback" in current page administration
     And I set the field "uid" to "Sally Student"
     Then I should see "Michigan"
     And I should see "Rail"
@@ -89,6 +89,6 @@ Feature: Show all feedback responses from a user
   Scenario: Verify that a suspended student's feedback is not shown
     When I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "All feedback" node in "Course administration > Feedback viewer"
+    And I navigate to "Feedback viewer > All feedback" in current page administration
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Shawn Student"
