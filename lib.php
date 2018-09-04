@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die;
+
 function local_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
 
     if (!has_capability('local/feedbackviewer:view', $context) &&
