@@ -15,8 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Output display. This overrides various parts of mod_feedback_responses_table
- * and table_sql in order to display key:value pairs with filtering enabled.
+ * Output display.
  *
  * @package   local_feedbackviewer
  * @copyright 2016 Lafayette College ITS
@@ -27,21 +26,45 @@ namespace local_feedbackviewer;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Output display. This overrides various parts of mod_feedback_responses_table
+ * and table_sql in order to display key:value pairs with filtering enabled.
+ *
+ * @package   local_feedbackviewer
+ * @copyright 2016 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class display extends \mod_feedback_responses_table {
+    /** @var int $userid The userid whose responses are displayed. */
     protected $userid;
 
+    /**
+     * Constructor for the responses table.
+     *
+     * @param mod_feedback_structure $feedbackstructure the feedback
+     * @param int $userid The individual user id
+     */
     public function __construct($feedbackstructure, $userid) {
         $this->userid = $userid;
         parent::__construct($feedbackstructure);
     }
 
-    // Overridden to narrow on the given user.
+    /**
+     * Overrides parent to narrow the responses to the individual user.
+     *
+     * @param int $group retrieve only users from this group (optional)
+     */
     protected function init($group=0) {
         parent::init($group);
         $this->sql->where .= 'AND u.id = :userid';
         $this->sql->params['userid'] = $this->userid;
     }
 
+    /**
+     * Build the response table. Echos the output.
+     *
+     * @return void
+     */
     public function build_table() {
         $headers = array();
         foreach ($this->feedbackstructure->get_items() as $id => $item) {
@@ -62,14 +85,30 @@ class display extends \mod_feedback_responses_table {
         echo \html_writer::end_tag('div');
     }
 
+    /**
+     * Invokes out(); skips all the stuff in the parent.
+     */
     public function display() {
         $this->out(1, false, '');
     }
 
+    /**
+     * Inherited from class flexible_table. Nothing to do here.
+     *
+     * @param bool $closeexportclassdoc Included for compatibility and unused.
+     * @return string empty string
+     */
     public function finish_output($closeexportclassdoc = true) {
         return '';
     }
 
+    /**
+     * Build the table and output it.
+     *
+     * @param int $pagesize
+     * @param bool $useinitialsbar
+     * @param string $downloadhelpbutton
+     */
     public function out($pagesize, $useinitialsbar, $downloadhelpbutton='') {
         global $DB;
 

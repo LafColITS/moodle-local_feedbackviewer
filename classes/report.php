@@ -26,6 +26,13 @@ namespace local_feedbackviewer;
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Build the report for display.
+ *
+ * @package   local_feedbackviewer
+ * @copyright 2017 Lafayette College ITS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class report {
 
     /**

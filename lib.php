@@ -24,6 +24,13 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+/**
+ * Extends core navigation to display the feedbackviewer link in the course administration.
+ *
+ * @param navigation_node $navigation The navigation node to extend
+ * @param stdClass        $course The course object
+ * @param context         $context The course context
+ */
 function local_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
 
     if (!has_capability('local/feedbackviewer:view', $context) &&
