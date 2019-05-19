@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.4.1 (May 19, 2019)
+
+- Minor code cleanup
+- Declare mod_feedback dependency
+
 ## 3.4.0 (May 13, 2018)
 
 - Updated for GDPR compliance
