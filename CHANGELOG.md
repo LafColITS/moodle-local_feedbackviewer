@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Dropped Moodle 3.4 support
+
 ## 3.4.1 (May 19, 2019)
 
 - Minor code cleanup
