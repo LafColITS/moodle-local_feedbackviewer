@@ -17,6 +17,9 @@ addons:
     packages:
       - openjdk-8-jre-headless
 
+services:
+ - mysql
+
 env:
  matrix:
   - DB=pgsql MOODLE_BRANCH=MOODLE_35_STABLE
