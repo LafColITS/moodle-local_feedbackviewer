@@ -4,6 +4,10 @@
 
 - Dropped Moodle 3.4 support
 
+## 3.4.1b (May 8, 2020) by [@FurloSK](https://github.com/FurloSK/moodle-local_feedbackviewer)
+
+- When labels are present in feedback, their proper text is displayed instead of empty 'label' sign
+
 ## 3.4.1 (May 19, 2019)
 
 - Minor code cleanup

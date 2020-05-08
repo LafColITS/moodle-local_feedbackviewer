@@ -19,4 +19,5 @@ The plugin has no options; once installed it may be accessed through Course admi
 
 Author
 -----
-Charles Fulton (fultonc@lafayette.edu)
+- Charles Fulton (fultonc@lafayette.edu)
+- minor contributions by [@FurloSK](https://github.com/FurloSK/moodle-local_feedbackviewer)
