@@ -27,7 +27,9 @@ namespace local_feedbackviewer;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Output display. This overrides various parts of mod_feedback_responses_table
+ * Displakys feedback table responses.
+ *
+ * This overrides various parts of mod_feedback_responses_table
  * and table_sql in order to display key:value pairs with filtering enabled.
  *
  * @package   local_feedbackviewer
