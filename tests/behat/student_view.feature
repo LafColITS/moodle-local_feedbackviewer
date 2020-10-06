@@ -7,15 +7,15 @@ Feature: Show my feedback responses in a course
   Background:
     Given the following "courses" exist:
       | fullname | shortname | category |
-      | Course 1 | C1 | 0 |
+      | Course 1 | C1        | 0        |
     And the following "users" exist:
-      | username | firstname | lastname | email |
-      | teacher1 | Terry | Teacher | teacher1@example.com |
-      | student1 | Sally | Student | student1@example.com |
+      | username | firstname | lastname | email                |
+      | teacher1 | Terry     | Teacher  | teacher1@example.com |
+      | student1 | Sally     | Student  | student1@example.com |
     And the following "course enrolments" exist:
-      | user | course | role |
-      | teacher1 | C1 | editingteacher |
-      | student1 | C1 | student |
+      | user     | course | role           |
+      | teacher1 | C1     | editingteacher |
+      | student1 | C1     | student        |
     And the following "activities" exist:
       | activity | name           | course | idnumber  | anonymous |
       | feedback | Football       | C1     | feedback0 | 2         |

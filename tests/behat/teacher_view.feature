@@ -7,21 +7,21 @@ Feature: Show all feedback responses from a user
   Background:
     Given the following "courses" exist:
       | fullname | shortname | category |
-      | Course 1 | C1 | 0 |
+      | Course 1 | C1        | 0        |
     And the following "users" exist:
-      | username | firstname | lastname | email |
-      | teacher1 | Terry | Teacher | teacher1@example.com |
-      | student1 | Sally | Student | student1@example.com |
-      | student2 | Steve | Student | student2@example.com |
-      | student3 | Sadie | Student | student3@example.com |
-      | student4 | Shawn | Student | student4@example.com |
+      | username | firstname | lastname | email                |
+      | teacher1 | Terry     | Teacher  | teacher1@example.com |
+      | student1 | Sally     | Student  | student1@example.com |
+      | student2 | Steve     | Student  | student2@example.com |
+      | student3 | Sadie     | Student  | student3@example.com |
+      | student4 | Shawn     | Student  | student4@example.com |
     And the following "course enrolments" exist:
-      | user | course | role           | status |
-      | teacher1 | C1 | editingteacher | 0      |
-      | student1 | C1 | student        | 0      |
-      | student2 | C1 | student        | 0      |
-      | student3 | C1 | student        | 0      |
-      | student4 | C1 | student        | 1      |
+      | user     | course | role           | status |
+      | teacher1 | C1     | editingteacher | 0      |
+      | student1 | C1     | student        | 0      |
+      | student2 | C1     | student        | 0      |
+      | student3 | C1     | student        | 0      |
+      | student4 | C1     | student        | 1      |
     And the following "activities" exist:
       | activity | name           | course | idnumber  | anonymous |
       | feedback | Football       | C1     | feedback0 | 2         |
