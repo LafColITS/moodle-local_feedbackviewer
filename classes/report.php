@@ -45,9 +45,10 @@ class report {
         $users = array();
         $userlist = get_enrolled_users($coursecontext, '', 0, \user_picture::fields('u', null, 0, 0, true));
         $suspended = get_suspended_userids($coursecontext);
+        $canviewfullnames = has_capability('moodle/site:viewfullnames', $coursecontext);
         foreach ($userlist as $user) {
             if (!in_array($user->id, $suspended)) {
-                $users[$user->id] = fullname($user);
+                $users[$user->id] = fullname($user, $canviewfullnames);
             }
         }
         return $users;
