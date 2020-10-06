@@ -65,6 +65,11 @@ class report {
 
         $feedbacks = get_all_instances_in_course('feedback', $course);
         foreach ($feedbacks as $feedback) {
+            $feedbackmodule = get_coursemodule_from_instance('feedback', $feedback->id);
+            if (!has_capability('mod/feedback:complete', \context_module::instance($feedback->id), $uid)) {
+                continue;
+            }
+
             $params = array('feedback' => $feedback->id,
                     'userid' => $uid,
                     'anonymous_response' => FEEDBACK_ANONYMOUS_NO);
