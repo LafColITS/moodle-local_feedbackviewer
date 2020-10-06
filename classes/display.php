@@ -70,7 +70,11 @@ class display extends \mod_feedback_responses_table {
     public function build_table() {
         $headers = array();
         foreach ($this->feedbackstructure->get_items() as $id => $item) {
-            $headers[$id] = $item->name;
+            if ($item->typ == 'label') {
+                $headers[$id] = \html_writer::tag('div', $item->presentation, array('class' => 'fitemlabel'));
+            } else {
+                $headers[$id] = $item->name;
+            }
         }
 
         foreach ($this->rawdata as $row) {
