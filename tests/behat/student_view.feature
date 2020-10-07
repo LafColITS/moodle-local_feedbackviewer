@@ -1,4 +1,4 @@
-@local @local_feedbackviewer
+@local @local_feedbackviewer @local_feedbackviewer_student
 Feature: Show my feedback responses in a course
   In order to review my feedback responses in a course
   As a student

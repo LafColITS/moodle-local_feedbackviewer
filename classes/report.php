@@ -42,8 +42,30 @@ class report {
      * @return array $users
      */
     public static function get_all_users($coursecontext) {
+        global $DB, $USER;
+
         $users = array();
         $userlist = get_enrolled_users($coursecontext, '', 0, \user_picture::fields('u', null, 0, 0, true));
+
+        $course = $DB->get_record('course', array('id' => $coursecontext->instanceid), '*', MUST_EXIST);
+
+        if ($course->groupmode == SEPARATEGROUPS
+            && !has_capability('moodle/site:accessallgroups', $coursecontext)) {
+            $userlist = array();
+            $groupids = array_keys(groups_get_all_groups($course->id, $USER->id));
+            foreach ($groupids as $groupid) {
+                $groupusers = get_enrolled_users($coursecontext, '', $groupid, \user_picture::fields('u', null, 0, 0, true));
+
+                // go over group users and save new ones into final list
+                foreach ($groupusers as $groupuser) {
+                    if (!array_key_exists($groupuser->id, $userlist)) {
+                        $userlist[$groupuser->id] = $groupuser;
+                    }
+                }
+            }
+
+        }
+
         $suspended = get_suspended_userids($coursecontext);
         $canviewfullnames = has_capability('moodle/site:viewfullnames', $coursecontext);
         foreach ($userlist as $user) {
@@ -62,6 +84,11 @@ class report {
      */
     public static function build_report($course, $uid) {
         global $DB, $OUTPUT;
+
+        $visibleUsers = report::get_all_users(\context_course::instance($course->id));
+        if (!array_key_exists($uid, $visibleUsers)) {
+            return;
+        }
 
         $feedbacks = get_all_instances_in_course('feedback', $course);
         foreach ($feedbacks as $feedback) {
