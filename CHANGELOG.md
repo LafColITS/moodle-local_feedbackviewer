@@ -1,10 +1,15 @@
 # Changelog
 
-## Unreleased
+## 3.7.0
 
 - Change default branch to "main"
 - Update CI tool to version 3
 - Dropped support for Moodle 3.6
+- Fixed #19: Respect viewfullnames capability (thanks FurloSK)
+- Fixed #18: PHP warning when Feedback contains a Label (thanks FurloSK)
+- Fixed #17: Labels are displayed incorrectly (thanks FurloSK)
+- Fixed #16: Don't show inaccessible Feedbacks in My Feedback (thanks FurloSK)
+- Fixed #15: Respect course groupmode (thanks FurloSK)
 
 ## 3.6.0 (June 15, 2020)
 
