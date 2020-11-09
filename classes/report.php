@@ -56,7 +56,7 @@ class report {
             foreach ($groupids as $groupid) {
                 $groupusers = get_enrolled_users($coursecontext, '', $groupid, \user_picture::fields('u', null, 0, 0, true));
 
-                // go over group users and save new ones into final list
+                // Go over group users and save new ones into final list.
                 foreach ($groupusers as $groupuser) {
                     if (!array_key_exists($groupuser->id, $userlist)) {
                         $userlist[$groupuser->id] = $groupuser;
@@ -85,8 +85,8 @@ class report {
     public static function build_report($course, $uid) {
         global $DB, $OUTPUT;
 
-        $visibleUsers = report::get_all_users(\context_course::instance($course->id));
-        if (!array_key_exists($uid, $visibleUsers)) {
+        $visibleusers = self::get_all_users(\context_course::instance($course->id));
+        if (!array_key_exists($uid, $visibleusers)) {
             return;
         }
 
