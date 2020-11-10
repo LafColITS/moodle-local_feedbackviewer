@@ -24,11 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2020100700;
+$plugin->version   = 2020100701;
 $plugin->requires  = 2019052000;
 $plugin->component = 'local_feedbackviewer';
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'v3.7.0';
+$plugin->release   = 'v3.7.1';
 $plugin->dependencies = array(
     'mod_feedback' => 2017051500
 );

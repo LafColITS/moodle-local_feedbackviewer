@@ -1,6 +1,11 @@
 # Changelog
 
-## 3.7.0
+## 3.7.1 (November 10, 2020)
+
+- Minor code cleanup
+- Expand test coverage to PHP 7.4 and Moodle 3.10
+
+## 3.7.0 (October 7, 2020)
 
 - Change default branch to "main"
 - Update CI tool to version 3
