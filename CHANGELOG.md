@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Migrate CI builds to Github Actions
+
 ## 3.7.1 (November 10, 2020)
 
 - Minor code cleanup

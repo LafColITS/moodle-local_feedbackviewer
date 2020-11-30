@@ -1,7 +1,7 @@
 Feedback viewer
 ============================
 
-[![Build Status](https://travis-ci.com/LafColITS/moodle-local_feedbackviewer.svg?branch=main)](https://travis-ci.com/LafColITS/moodle-local_feedbackviewer)
+![Moodle Plugin CI](https://github.com/LafColITS/moodle-local_feedbackviewer/workflows/Moodle%20Plugin%20CI/badge.svg)
 
 The Feedback viewer plugin displays the responses from all Feedback modules in a given course, filtered by user.
 
