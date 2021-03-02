@@ -33,16 +33,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
-        moodle-version: ['MOODLE_37_STABLE', 'MOODLE_38_STABLE', 'MOODLE_39_STABLE', 'MOODLE_310_STABLE', 'master']
+        php: ['7.4']
+        moodle-branch: ['MOODLE_37_STABLE', 'MOODLE_38_STABLE', 'MOODLE_39_STABLE', 'MOODLE_310_STABLE', 'master']
         database: [pgsql, mariadb]
-        node-versions: ['14.15.0']
 
         exclude:
-          - {moodle-version: 'MOODLE_37_STABLE', php-versions: '7.4', node-versions: '14.15.0'}
+          - {moodle-branch: 'MOODLE_37_STABLE', php: '7.4'}
         include:
-          - {moodle-version: 'MOODLE_37_STABLE', php-versions: '7.1', node-versions: '14.15.0', operating-system: 'ubuntu-18.04', database: 'mariadb'}
-          - {moodle-version: 'MOODLE_37_STABLE', php-versions: '7.1', node-versions: '14.15.0', operating-system: 'ubuntu-18.04', database: 'pgsql'}
+          - {moodle-branch: 'MOODLE_37_STABLE', php: '7.1', operating-system: 'ubuntu-18.04', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_37_STABLE', php: '7.1', operating-system: 'ubuntu-18.04', database: 'pgsql'}
 
     steps:
       - name: Check out repository code
