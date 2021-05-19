@@ -2,8 +2,10 @@
 
 ## Unreleased
 
+- [Bugfix] Update internal API in light of [MDL-45242](https://tracker.moodle.org/browse/MDL-45242)
 - Migrate CI builds to Github Actions
-- Drop support for Moodle 3.7-3.8
+- Drop support for Moodle 3.7-3.10
+
 
 ## 3.7.1 (November 10, 2020)
 
