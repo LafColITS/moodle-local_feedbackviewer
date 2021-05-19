@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 3.11.0 (May 19, 2021)
 
 - [Bugfix] Update internal API in light of [MDL-45242](https://tracker.moodle.org/browse/MDL-45242)
 - Migrate CI builds to Github Actions
