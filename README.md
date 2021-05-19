@@ -7,7 +7,7 @@ The Feedback viewer plugin displays the responses from all Feedback modules in a
 
 Requirements
 ------------
-- Moodle 3.9 (build 2020061500 or later)
+- Moodle 3.11 (build 2021051700 or later)
 
 Installation
 ------------

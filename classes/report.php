@@ -44,8 +44,13 @@ class report {
     public static function get_all_users($coursecontext) {
         global $DB, $USER;
 
+        // Set user fields.
+        $userfields = \core_user\fields::for_userpic();
+        $selects    = $userfields->get_sql('u', false, '', 'id', false)->selects;
+        $selects    = str_replace(', ', ',', $selects);
+
         $users = array();
-        $userlist = get_enrolled_users($coursecontext, '', 0, \user_picture::fields('u', null, 0, 0, true));
+        $userlist = get_enrolled_users($coursecontext, '', 0, $selects);
 
         $course = $DB->get_record('course', array('id' => $coursecontext->instanceid), '*', MUST_EXIST);
 
@@ -54,7 +59,7 @@ class report {
             $userlist = array();
             $groupids = array_keys(groups_get_all_groups($course->id, $USER->id));
             foreach ($groupids as $groupid) {
-                $groupusers = get_enrolled_users($coursecontext, '', $groupid, \user_picture::fields('u', null, 0, 0, true));
+                $groupusers = get_enrolled_users($coursecontext, '', $groupid, $selects);
 
                 // Go over group users and save new ones into final list.
                 foreach ($groupusers as $groupuser) {
