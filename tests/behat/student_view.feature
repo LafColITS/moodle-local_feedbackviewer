@@ -20,10 +20,7 @@ Feature: Show my feedback responses in a course
       | activity | name           | course | idnumber  | anonymous |
       | feedback | Football       | C1     | feedback0 | 2         |
       | feedback | Transportation | C1     | feedback1 | 2         |
-    When I log in as "teacher1"
-    And I am on "Course 1" course homepage
-    And I turn editing mode on
-    And I follow "Football"
+    When I am on the "Football" "feedback activity" page logged in as "teacher1"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite football team? |
@@ -40,9 +37,9 @@ Feature: Show my feedback responses in a course
   Scenario: View a student's feedback
     And I log in as "student1"
     And I am on "Course 1" course homepage
-    And I navigate to "Feedback viewer > My feedback" in current page administration
+    And I navigate to "Feedback viewer" in current page administration
     And I should see "Not completed yet"
-    And I follow "Course 1"
+    And I am on "Course 1" course homepage
     And I follow "Football"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
@@ -55,7 +52,7 @@ Feature: Show my feedback responses in a course
     And I log out
     And I log in as "student1"
     And I am on "Course 1" course homepage
-    And I navigate to "Feedback viewer > My feedback" in current page administration
+    And I navigate to "Feedback viewer" in current page administration
     Then I should see "Michigan"
     And I should see "Rail"
     And I log out

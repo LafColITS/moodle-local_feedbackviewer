@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Dropped support for Moodle 3.11
+
 ## 3.11.0 (May 19, 2021)
 
 - [Bugfix] Update internal API in light of [MDL-45242](https://tracker.moodle.org/browse/MDL-45242)
