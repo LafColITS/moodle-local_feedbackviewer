@@ -28,8 +28,7 @@ Feature: Show all feedback responses from a user
       | name    | course | idnumber |
       | Group 1 | C1     | G1       |
     And I log in as "teacher1"
-    And I am on "Course 1" course homepage
-    And I navigate to "Users > Groups" in current page administration
+    And I am on the "Course 1" "Groups" page
     And I add "ta1" user to "Group 1" group members
     And I add "student1" user to "Group 1" group members
     And I add "student2" user to "Group 1" group members
@@ -37,9 +36,7 @@ Feature: Show all feedback responses from a user
       | activity | name           | course | idnumber  | anonymous |
       | feedback | Football       | C1     | feedback0 | 2         |
       | feedback | Transportation | C1     | feedback1 | 2         |
-    And I am on "Course 1" course homepage
-    And I turn editing mode on
-    And I follow "Football"
+    And I am on the "Football" "feedback activity" page logged in as "teacher1"
     And I click on "Edit questions" "link" in the "[role=main]" "css_element"
     And I add a "Longer text answer" question to the feedback with:
       | Question | Favorite football team? |
@@ -51,9 +48,7 @@ Feature: Show all feedback responses from a user
       | Question | Favorite transport mode? |
       | Label    | transportmode            |
     And I log out
-    When I log in as "student1"
-    And I am on "Course 1" course homepage
-    And I follow "Football"
+    And I am on the "Football" "feedback activity" page logged in as "student1"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
     And I press "Submit your answers"
@@ -63,9 +58,7 @@ Feature: Show all feedback responses from a user
     And I set the field "Favorite transport mode?" to "Rail"
     And I press "Submit your answers"
     And I log out
-    And I log in as "student2"
-    And I am on "Course 1" course homepage
-    And I follow "Football"
+    And I am on the "Football" "feedback activity" page logged in as "student2"
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Ohio State"
     And I press "Submit your answers"
@@ -80,7 +73,8 @@ Feature: Show all feedback responses from a user
   Scenario: View a student's feedback
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Feedback viewer > All feedback" in current page administration
+    And I navigate to "Feedback viewer" in current page administration
+    And I select "All feedback" from the "jump" singleselect
     And I set the field "uid" to "Sally Student"
     Then I should see "Michigan"
     And I should see "Rail"
@@ -99,7 +93,8 @@ Feature: Show all feedback responses from a user
   Scenario: Verify that a suspended student's feedback is not shown
     When I log in as "teacher1"
     And I am on "Course 1" course homepage
-    And I navigate to "Feedback viewer > All feedback" in current page administration
+    And I navigate to "Feedback viewer" in current page administration
+    And I select "All feedback" from the "jump" singleselect
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Shawn Student"
 
@@ -107,6 +102,7 @@ Feature: Show all feedback responses from a user
   Scenario: Verify that I can only see feedback for groups I have access to
     When I log in as "ta1"
     And I am on "Course 1" course homepage
-    And I navigate to "Feedback viewer > All feedback" in current page administration
+    And I navigate to "Feedback viewer" in current page administration
+    And I select "All feedback" from the "jump" singleselect
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Sadie Student"
