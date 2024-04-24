@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Dropped support for Moodle 3.11
+- Dropped support for Moodle 3.11-4.0
 
 ## 3.11.0 (May 19, 2021)
 
