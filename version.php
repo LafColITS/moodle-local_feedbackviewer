@@ -29,6 +29,6 @@ $plugin->requires  = 2022112800;
 $plugin->component = 'local_feedbackviewer';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = 'v3.11.0';
-$plugin->dependencies = array(
-    'mod_feedback' => 2017051500
-);
+$plugin->dependencies = [
+    'mod_feedback' => 2017051500,
+];

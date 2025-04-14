@@ -24,22 +24,22 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$capabilities = array(
-    'local/feedbackviewer:view' => array(
+$capabilities = [
+    'local/feedbackviewer:view' => [
         'riskbitmask' => RISK_PERSONAL,
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
+        'archetypes' => [
             'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
-        ),
+            'manager' => CAP_ALLOW,
+        ],
         'clonepermissionsfrom' => 'moodle/site:viewreports',
-    ),
-    'local/feedbackviewer:viewmyfeedback' => array(
+    ],
+    'local/feedbackviewer:viewmyfeedback' => [
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-            'student' => CAP_ALLOW
-        )
-    )
-);
+        'archetypes' => [
+            'student' => CAP_ALLOW,
+        ],
+    ],
+];

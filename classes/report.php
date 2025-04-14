@@ -24,8 +24,6 @@
 
 namespace local_feedbackviewer;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Build the report for display.
  *
@@ -49,14 +47,14 @@ class report {
         $selects    = $userfields->get_sql('u', false, '', 'id', false)->selects;
         $selects    = str_replace(', ', ',', $selects);
 
-        $users = array();
+        $users = [];
         $userlist = get_enrolled_users($coursecontext, '', 0, $selects);
 
-        $course = $DB->get_record('course', array('id' => $coursecontext->instanceid), '*', MUST_EXIST);
+        $course = $DB->get_record('course', ['id' => $coursecontext->instanceid], '*', MUST_EXIST);
 
         if ($course->groupmode == SEPARATEGROUPS
             && !has_capability('moodle/site:accessallgroups', $coursecontext)) {
-            $userlist = array();
+            $userlist = [];
             $groupids = array_keys(groups_get_all_groups($course->id, $USER->id));
             foreach ($groupids as $groupid) {
                 $groupusers = get_enrolled_users($coursecontext, '', $groupid, $selects);
@@ -102,9 +100,9 @@ class report {
                 continue;
             }
 
-            $params = array('feedback' => $feedback->id,
+            $params = ['feedback' => $feedback->id,
                     'userid' => $uid,
-                    'anonymous_response' => FEEDBACK_ANONYMOUS_NO);
+                    'anonymous_response' => FEEDBACK_ANONYMOUS_NO];
             $feedbackcompleted = $DB->get_record('feedback_completed', $params);
 
             echo $OUTPUT->heading(format_string($feedback->name));

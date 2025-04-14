@@ -24,8 +24,6 @@
 
 namespace local_feedbackviewer;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Displakys feedback table responses.
  *
@@ -68,10 +66,10 @@ class display extends \mod_feedback_responses_table {
      * @return void
      */
     public function build_table() {
-        $headers = array();
+        $headers = [];
         foreach ($this->feedbackstructure->get_items() as $id => $item) {
             if ($item->typ == 'label') {
-                $headers[$id] = \html_writer::tag('div', $item->presentation, array('class' => 'fitemlabel'));
+                $headers[$id] = \html_writer::tag('div', $item->presentation, ['class' => 'fitemlabel']);
             } else {
                 $headers[$id] = $item->name;
             }
@@ -81,12 +79,12 @@ class display extends \mod_feedback_responses_table {
             $formattedrow = $this->format_row($row);
         }
 
-        echo \html_writer::start_tag('div', array('class' => 'mform'));
+        echo \html_writer::start_tag('div', ['class' => 'mform']);
         foreach ($headers as $id => $header) {
-            echo \html_writer::start_tag('div', array('class' => 'fitem'));
-            echo \html_writer::tag('div', $header, array('class' => 'fitemtitle'));
+            echo \html_writer::start_tag('div', ['class' => 'fitem']);
+            echo \html_writer::tag('div', $header, ['class' => 'fitemtitle']);
             if (array_key_exists("val$id", $formattedrow)) {
-                echo \html_writer::tag('div', format_text($formattedrow["val$id"]), array('class' => 'felement fstatic'));
+                echo \html_writer::tag('div', format_text($formattedrow["val$id"]), ['class' => 'felement fstatic']);
             }
             echo \html_writer::end_tag('div');
         }

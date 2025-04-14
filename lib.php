@@ -22,8 +22,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Extends core navigation to display the feedbackviewer link in the course administration.
  *
@@ -41,12 +39,12 @@ function local_feedbackviewer_extend_navigation_course($navigation, $course, $co
     $feedback = $navigation->add(get_string('pluginname', 'local_feedbackviewer'));
 
     if (has_capability('local/feedbackviewer:view', $context)) {
-        $url = new moodle_url('/local/feedbackviewer/index.php', array('id' => $course->id));
+        $url = new moodle_url('/local/feedbackviewer/index.php', ['id' => $course->id]);
         $feedback->add(get_string('all', 'local_feedbackviewer'), $url,
                 navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
     if (has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
-        $url = new moodle_url('/local/feedbackviewer/my.php', array('id' => $course->id));
+        $url = new moodle_url('/local/feedbackviewer/my.php', ['id' => $course->id]);
         $feedback->add(get_string('my', 'local_feedbackviewer'), $url,
                 navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }

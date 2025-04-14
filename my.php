@@ -25,14 +25,14 @@
 require_once(dirname(__FILE__) . '/../../config.php');
 
 $id     = required_param('id', PARAM_INT);
-$course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
+$course = $DB->get_record('course', ['id' => $id], '*', MUST_EXIST);
 
 require_login($course);
 
 // Setup page.
-$PAGE->set_url('/local/feedbackviewer/my.php', array('id' => $id));
+$PAGE->set_url('/local/feedbackviewer/my.php', ['id' => $id]);
 $PAGE->set_pagelayout('report');
-$returnurl = new moodle_url('/course/view.php', array('id' => $id));
+$returnurl = new moodle_url('/course/view.php', ['id' => $id]);
 
 // Check permissions.
 $coursecontext = context_course::instance($course->id);
