@@ -43,7 +43,7 @@ require_capability('local/feedbackviewer:view', $coursecontext);
 $users = local_feedbackviewer\report::get_all_users($coursecontext);
 
 // Finish setting up page.
-$PAGE->set_title($course->shortname .': '. get_string('feedback'));
+$PAGE->set_title($course->shortname . ': ' . get_string('feedback'));
 $PAGE->set_heading($course->fullname);
 
 // Display to the user.

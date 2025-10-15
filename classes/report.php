@@ -32,7 +32,6 @@ namespace local_feedbackviewer;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class report {
-
     /**
      * Return all the users in the course.
      *
@@ -52,8 +51,10 @@ class report {
 
         $course = $DB->get_record('course', ['id' => $coursecontext->instanceid], '*', MUST_EXIST);
 
-        if ($course->groupmode == SEPARATEGROUPS
-            && !has_capability('moodle/site:accessallgroups', $coursecontext)) {
+        if (
+            $course->groupmode == SEPARATEGROUPS
+            && !has_capability('moodle/site:accessallgroups', $coursecontext)
+        ) {
             $userlist = [];
             $groupids = array_keys(groups_get_all_groups($course->id, $USER->id));
             foreach ($groupids as $groupid) {
@@ -66,7 +67,6 @@ class report {
                     }
                 }
             }
-
         }
 
         $suspended = get_suspended_userids($coursecontext);
@@ -113,8 +113,14 @@ class report {
                 continue;
             }
 
-            $feedbackstructure = new \mod_feedback_completion($feedback, get_coursemodule_from_id(null, $feedback->coursemodule),
-                0, true, $feedbackcompleted->id, $uid);
+            $feedbackstructure = new \mod_feedback_completion(
+                $feedback,
+                get_coursemodule_from_id(null, $feedback->coursemodule),
+                0,
+                true,
+                $feedbackcompleted->id,
+                $uid
+            );
             $responsestable = new display($feedbackstructure, $uid);
             $responsestable->display();
         }

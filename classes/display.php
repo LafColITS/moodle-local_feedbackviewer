@@ -54,7 +54,7 @@ class display extends \mod_feedback_responses_table {
      *
      * @param int $group retrieve only users from this group (optional)
      */
-    protected function init($group=0) {
+    protected function init($group = 0) {
         parent::init($group);
         $this->sql->where .= 'AND u.id = :userid';
         $this->sql->params['userid'] = $this->userid;
@@ -115,7 +115,7 @@ class display extends \mod_feedback_responses_table {
      * @param bool $useinitialsbar
      * @param string $downloadhelpbutton
      */
-    public function out($pagesize, $useinitialsbar, $downloadhelpbutton='') {
+    public function out($pagesize, $useinitialsbar, $downloadhelpbutton = '') {
         global $DB;
 
         $this->add_all_values_to_output();

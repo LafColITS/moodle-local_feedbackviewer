@@ -31,8 +31,10 @@
  */
 function local_feedbackviewer_extend_navigation_course($navigation, $course, $context) {
 
-    if (!has_capability('local/feedbackviewer:view', $context) &&
-        !has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
+    if (
+        !has_capability('local/feedbackviewer:view', $context) &&
+        !has_capability('local/feedbackviewer:viewmyfeedback', $context)
+    ) {
         return true;
     }
 
@@ -40,12 +42,24 @@ function local_feedbackviewer_extend_navigation_course($navigation, $course, $co
 
     if (has_capability('local/feedbackviewer:view', $context)) {
         $url = new moodle_url('/local/feedbackviewer/index.php', ['id' => $course->id]);
-        $feedback->add(get_string('all', 'local_feedbackviewer'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
+        $feedback->add(
+            get_string('all', 'local_feedbackviewer'),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            null,
+            new pix_icon('i/report', '')
+        );
     }
     if (has_capability('local/feedbackviewer:viewmyfeedback', $context)) {
         $url = new moodle_url('/local/feedbackviewer/my.php', ['id' => $course->id]);
-        $feedback->add(get_string('my', 'local_feedbackviewer'), $url,
-                navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
+        $feedback->add(
+            get_string('my', 'local_feedbackviewer'),
+            $url,
+            navigation_node::TYPE_SETTING,
+            null,
+            null,
+            new pix_icon('i/report', '')
+        );
     }
 }
