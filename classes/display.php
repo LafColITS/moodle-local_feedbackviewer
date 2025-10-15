@@ -56,7 +56,7 @@ class display extends \mod_feedback_responses_table {
      */
     protected function init($group = 0) {
         parent::init($group);
-        $this->sql->where .= 'AND u.id = :userid';
+        $this->sql->where .= ' AND u.id = :userid';
         $this->sql->params['userid'] = $this->userid;
     }
 
