@@ -74,7 +74,7 @@ Feature: Show all feedback responses from a user
     And I log in as "teacher1"
     And I am on "Course 1" course homepage
     And I navigate to "Feedback viewer" in current page administration
-    And I select "All feedback" from the "jump" singleselect
+    And I set the field "Browse settings with this index" to "All feedback"
     And I set the field "uid" to "Sally Student"
     Then I should see "Michigan"
     And I should see "Rail"
@@ -94,7 +94,7 @@ Feature: Show all feedback responses from a user
     When I log in as "teacher1"
     And I am on "Course 1" course homepage
     And I navigate to "Feedback viewer" in current page administration
-    And I select "All feedback" from the "jump" singleselect
+    And I set the field "Browse settings with this index" to "All feedback"
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Shawn Student"
 
@@ -103,6 +103,6 @@ Feature: Show all feedback responses from a user
     When I log in as "ta1"
     And I am on "Course 1" course homepage
     And I navigate to "Feedback viewer" in current page administration
-    And I select "All feedback" from the "jump" singleselect
+    And I set the field "Browse settings with this index" to "All feedback"
     Then the "uid" select box should contain "Steve Student"
     And the "uid" select box should not contain "Sadie Student"
