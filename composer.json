@@ -1,0 +1,12 @@
+{
+    "name": "lafayettecollege/moodle-local_feedbackviewer",
+    "description": "The Feedback viewer plugin displays the responses from all Feedback modules in a given course, filtered by user.",
+    "type": "moodle-local",
+    "require": {
+        "composer/installers": "*"
+    },
+    "license": "GPL-3.0-or-later",
+    "extra": {
+        "installer-name": "feedbackviewer"
+    }
+}

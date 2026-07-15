@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1.1 (July 15, 2026)
+
+- Added composer support
+
 ## v4.1.0 (October 15, 2025)
 
 - [Bugfix] Fix syntax error that affected postgresql
