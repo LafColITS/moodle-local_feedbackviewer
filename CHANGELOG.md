@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Dropped support for Moodle 4.1-4.4
+
 ## v4.1.1 (July 15, 2026)
 
 - Added composer support
