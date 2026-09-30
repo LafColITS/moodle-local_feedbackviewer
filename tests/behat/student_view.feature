@@ -44,7 +44,7 @@ Feature: Show my feedback responses in a course
     And I follow "Answer the questions"
     And I set the field "Favorite football team?" to "Michigan"
     And I press "Submit your answers"
-    And I press "Continue"
+    And I follow "Next"
     And I follow "Transportation"
     And I follow "Answer the questions"
     And I set the field "Favorite transport mode?" to "Rail"
